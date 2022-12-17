@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
-  "id": "johan-utils",
+  "id": "yaum",
   "version": "${version}",
-  "name": "JohanUtils",
+  "name": "yaum",
   "description": "",
   "authors": [
     "JohanVonElectrum"
   ],
   "contact": {},
   "license": "All-Rights-Reserved",
-  "icon": "assets/johan-utils/icon.png",
+  "icon": "assets/yaum/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "com.johanvonelectrum.johanutils.client.JohanUtilsClient"
+      "com.johanvonelectrum.yaum.client.YaumClient"
     ],
     "main": [
-      "com.johanvonelectrum.johanutils.JohanUtils"
+      "com.johanvonelectrum.yaum.Yaum"
     ]
   },
   "mixins": [
-      "johan-utils.mixins.json"
+    "yaum.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.14.11",

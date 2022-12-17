@@ -1,7 +1,6 @@
 package com.johanvonelectrum.yaum.settings;
 
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.TranslatableText;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

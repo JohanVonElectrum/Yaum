@@ -1,5 +1,0 @@
-{
-    "error.johan-utils.invalid-rule-value": "Wrong value for %s: %s",
-    "validator.johan-utils.boolean": "Only **true** or **false** is accepted.",
-    "rule.johan-utils.requireClient.description": "Requires a matching version of this mod installed client side to connect."
-}

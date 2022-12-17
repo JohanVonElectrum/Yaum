@@ -1,0 +1,5 @@
+{
+    "error.yaum.invalid-rule-value": "Wrong value for %s: %s",
+    "validator.yaum.boolean": "Only **true** or **false** is accepted.",
+    "rule.yaum.requireClient.description": "Requires a matching version of this mod installed client side to connect."
+}
