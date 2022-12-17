@@ -1,6 +1,6 @@
-package com.johanvonelectrum.johanutils.settings;
+package com.johanvonelectrum.yaum.settings;
 
-import com.johanvonelectrum.johanutils.JohanSettings;
+import com.johanvonelectrum.yaum.YaumSettings;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -14,7 +14,7 @@ public class SettingsManager {
      * Parse and load rules.
      */
     public static void init() {
-        parse(JohanSettings.class);
+        parse(YaumSettings.class);
         load();
     }
 

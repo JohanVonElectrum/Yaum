@@ -1,4 +1,4 @@
-package com.johanvonelectrum.johanutils.settings;
+package com.johanvonelectrum.yaum.settings;
 
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.TranslatableText;
@@ -71,7 +71,7 @@ public class ParsedRuleImpl<T> implements ParsedRule<T> {
 
     @Override
     public String description() {
-        return "rule.johan-utils." + this.name + ".description";
+        return "rule.yaum." + this.name + ".description";
     }
 
     @Override
@@ -112,10 +112,7 @@ public class ParsedRuleImpl<T> implements ParsedRule<T> {
 
     @Override
     public void set(ServerCommandSource source, T value, boolean setDefault) {
-        if (!validate(source, value)) {
-            source.sendError(new TranslatableText("johanutils.settings.invalid")); //TODO: support per validator msg
-            return;
-        }
+        if (!validate(source, value)) return;
 
         this.value = value;
 

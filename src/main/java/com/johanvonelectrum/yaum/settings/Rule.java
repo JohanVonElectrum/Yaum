@@ -1,4 +1,4 @@
-package com.johanvonelectrum.johanutils.settings;
+package com.johanvonelectrum.yaum.settings;
 
 import java.lang.annotation.*;
 

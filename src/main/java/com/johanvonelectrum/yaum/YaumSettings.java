@@ -1,8 +1,8 @@
-package com.johanvonelectrum.johanutils;
+package com.johanvonelectrum.yaum;
 
-import com.johanvonelectrum.johanutils.settings.Rule;
+import com.johanvonelectrum.yaum.settings.Rule;
 
-public class JohanSettings {
+public class YaumSettings {
     private static final String CORE = "Core";
 
     @Rule(

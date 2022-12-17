@@ -1,9 +1,9 @@
-package com.johanvonelectrum.johanutils;
+package com.johanvonelectrum.yaum;
 
-import com.johanvonelectrum.johanutils.settings.SettingsManager;
+import com.johanvonelectrum.yaum.settings.SettingsManager;
 import net.fabricmc.api.ModInitializer;
 
-public class JohanUtils implements ModInitializer {
+public class Yaum implements ModInitializer {
     @Override
     public void onInitialize() {
         SettingsManager.init();

@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.johanvonelectrum.johanutils.mixin",
+  "package": "com.johanvonelectrum.yaum.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
   ],
