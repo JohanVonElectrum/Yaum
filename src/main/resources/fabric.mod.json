@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "johan-utils",
+  "version": "${version}",
+  "name": "JohanUtils",
+  "description": "",
+  "authors": [
+    "JohanVonElectrum"
+  ],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/johan-utils/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.johanvonelectrum.johanutils.client.JohanUtilsClient"
+    ],
+    "main": [
+      "com.johanvonelectrum.johanutils.JohanUtils"
+    ]
+  },
+  "mixins": [
+      "johan-utils.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.11",
+    "fabric": "*",
+    "minecraft": "1.17.1"
+  }
+}
