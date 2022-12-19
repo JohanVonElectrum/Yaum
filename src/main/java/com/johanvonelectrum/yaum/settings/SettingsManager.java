@@ -51,4 +51,8 @@ public class SettingsManager {
     public static ParsedRule<?> get(String name) {
         return rules.get(name);
     }
+
+    public static Map<String, ParsedRule<?>> rules() {
+        return rules;
+    }
 }

@@ -1,13 +1,15 @@
 {
-  "required": true,
-  "minVersion": "0.8",
-  "package": "com.johanvonelectrum.yaum.mixin",
-  "compatibilityLevel": "JAVA_16",
-  "mixins": [
-  ],
-  "client": [
-  ],
-  "injectors": {
-    "defaultRequire": 1
-  }
+    "required": true,
+    "minVersion": "0.8",
+    "package": "com.johanvonelectrum.yaum.mixin",
+    "compatibilityLevel": "JAVA_16",
+    "mixins": [
+    ],
+    "server": [
+    ],
+    "client": [
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
 }

@@ -113,7 +113,12 @@ public class ParsedRuleImpl<T> implements ParsedRule<T> {
     public void set(ServerCommandSource source, T value, boolean setDefault) {
         if (!validate(source, value)) return;
 
-        this.value = value;
+        try {
+            this.field.set(null, value);
+            this.value = value;
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
 
         if (setDefault) {
             this.defaultValue = value;
