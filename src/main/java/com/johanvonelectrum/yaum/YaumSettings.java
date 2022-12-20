@@ -9,5 +9,11 @@ public class YaumSettings {
             categories = { CORE },
             side = Rule.RuleSide.SERVER
     )
-    public static boolean requireClient = false;
+    public static boolean protocol = true;
+
+    @Rule(
+            categories = { CORE },
+            side = Rule.RuleSide.SERVER
+    )
+    public static boolean requireClient = true;
 }

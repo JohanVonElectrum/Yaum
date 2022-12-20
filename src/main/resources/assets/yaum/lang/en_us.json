@@ -1,6 +1,8 @@
 {
     "arguments.yaum.rule.notFound": "There is no rule with this name: %s",
     "error.yaum.invalid-rule-value": "Wrong value for %s: %s",
+    "error.yaum.invalid-packet": "You have sent an invalid Yaum packet.",
     "validator.yaum.boolean": "Only **true** or **false** is accepted.",
-    "rule.yaum.requireClient.description": "Require a matching version of this mod installed client side to connect."
+    "rule.yaum.protocol.description": "Enables the use of the Yaum protocol to improve the user experience with Yaum on the client.",
+    "rule.yaum.requireClient.description": "Require Yaum installed on the client to be able to connect."
 }
