@@ -31,7 +31,11 @@ public class YaumSettings {
 
         @Override
         public boolean validate(ServerCommandSource source, ParsedRule<String> changingRule, String newValue, String userInput) {
-            return Language.hasLanguage(newValue);
+            if (Language.isInstalled(newValue)) {
+                Language.load(newValue);
+                return true;
+            }
+            return false;
         }
 
     }

@@ -1,0 +1,15 @@
+{
+    "arguments.yaum.rule.notFound": "No hay ninguna regla llamada: _%s_",
+    "command.yaum.yaum.peek.options": "Opciones: %s",
+    "command.yaum.yaum.peek.default": "Valor predeterminado: %s",
+    "command.yaum.yaum.peek.value": "Valor actual: %s",
+    "command.yaum.yaum.set": "Regla **%s** establecida a: _%s_",
+    "error.yaum.invalid-rule-value": "No se pudo establecer el valor a la regla **%s**: %s",
+    "error.yaum.invalid-rule-value.options": "Solo los siguientes valores están permitidos: %s",
+    "error.yaum.invalid-rule-value.validator": "El valor _%s_ no es aceptado por el validador **%s**: %s",
+    "error.yaum.invalid-packet": "Has enviado un paquete inválido de Yaum.",
+    "rule.yaum.protocol.description": "Activa el uso del protocolo Yaum para mejorar la experiencia del usuario con Yaum en el cliente.",
+    "rule.yaum.requireClient.description": "Requiere Yaum instalado en el cliente para poder conectarse.",
+    "rule.yaum.defaultLanguage.description": "Lenguaje predeterminado al que traducir.",
+    "validator.yaum.language.description": "el lenguaje _%s_ no está instalado."
+}

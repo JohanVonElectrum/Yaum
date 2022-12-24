@@ -52,6 +52,13 @@ public class Language {
         return languages.containsKey(lang);
     }
 
+    public static boolean isInstalled(String lang) {
+        try (InputStream inputStream = Language.class.getResourceAsStream("/assets/yaum/lang/" + lang + ".json")) {
+            if (inputStream != null) return true;
+        } catch (IOException ignored) {}
+        return false;
+    }
+
     public boolean hasTranslation(String key) {
         return translations.containsKey(key);
     }
