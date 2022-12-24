@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.johanvonelectrum.yaum.YaumSettings;
 import net.minecraft.util.JsonHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -78,7 +79,9 @@ public class Language {
 
     public static String tryTranslate(String lang, String key, Object... args) {
         if (!hasTranslation(lang, key)) {
-            return key;
+            if (lang.equals(YaumSettings.defaultLanguage) || !hasTranslation(YaumSettings.defaultLanguage, key)) return key;
+
+            return translate(YaumSettings.defaultLanguage, key, args);
         }
 
         return translate(lang, key, args);
