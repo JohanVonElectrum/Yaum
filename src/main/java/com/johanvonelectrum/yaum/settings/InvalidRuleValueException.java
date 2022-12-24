@@ -1,7 +1,7 @@
 package com.johanvonelectrum.yaum.settings;
 
+import com.johanvonelectrum.yaum.text.YaumText;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.TranslatableText;
 
 /**
  * <p>An {@link Exception} thrown when the value given for a {@link ParsedRule} is invalid.</p>
@@ -31,6 +31,6 @@ public class InvalidRuleValueException extends Exception {
      */
     public void notifySource(String ruleName, ServerCommandSource source) {
         if (getMessage() != null)
-            source.sendError(new TranslatableText("error.yaum.invalid-rule-value", ruleName, getMessage()));
+            source.sendError(YaumText.translatable("error.yaum.invalid-rule-value", ruleName, getMessage()).asText());
     }
 }

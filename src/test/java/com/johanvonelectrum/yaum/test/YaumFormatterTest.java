@@ -1,6 +1,9 @@
 package com.johanvonelectrum.yaum.test;
 
+import com.johanvonelectrum.yaum.YaumSettings;
+import com.johanvonelectrum.yaum.lang.Language;
 import com.johanvonelectrum.yaum.text.YaumText;
+import com.johanvonelectrum.yaum.text.format.YaumFormatter;
 
 public class YaumFormatterTest {
 
@@ -38,6 +41,44 @@ public class YaumFormatterTest {
                         "underlined=null, strikethrough=null, obfuscated=null, " +
                         "clickEvent=ClickEvent{action=RUN_COMMAND, value='/yaum rule test true'}, hoverEvent=null, " +
                         "insertion=null, font=minecraft:default}}");
+
+        Language.load("en_us");
+        assert YaumText.translatable(
+                "error.yaum.invalid-rule-value",
+                "defaultLanguage", Language.tryTranslate(
+                        YaumSettings.defaultLanguage,
+                        "error.yaum.invalid-rule-value.validator",
+                        "1", "language", Language.tryTranslate(
+                                YaumSettings.defaultLanguage,"validator.yaum.language.description", "1"
+                        )
+                )
+        ).asText().toString().equals(
+                "TextComponent{text='Couldn't set value for rule ', siblings=[TextComponent{text='defaultLanguage', " +
+                        "siblings=[], style=Style{ color=null, bold=true, italic=null, underlined=null, " +
+                        "strikethrough=null, obfuscated=null, clickEvent=null, hoverEvent=null, insertion=null, " +
+                        "font=minecraft:default}}, TextComponent{text=': The value ', siblings=[], style=Style{ " +
+                        "color=null, bold=null, italic=null, underlined=null, strikethrough=null, obfuscated=null, " +
+                        "clickEvent=null, hoverEvent=null, insertion=null, font=minecraft:default}}, " +
+                        "TextComponent{text='1', siblings=[], style=Style{ color=null, bold=null, italic=true, " +
+                        "underlined=null, strikethrough=null, obfuscated=null, clickEvent=null, hoverEvent=null, " +
+                        "insertion=null, font=minecraft:default}}, TextComponent{text=' is not accepted by the " +
+                        "validator ', siblings=[], style=Style{ color=null, bold=null, italic=null, underlined=null, " +
+                        "strikethrough=null, obfuscated=null, clickEvent=null, hoverEvent=null, insertion=null, " +
+                        "font=minecraft:default}}, TextComponent{text='language', siblings=[], style=Style{ " +
+                        "color=null, bold=true, italic=null, underlined=null, strikethrough=null, obfuscated=null, " +
+                        "clickEvent=null, hoverEvent=null, insertion=null, font=minecraft:default}}, " +
+                        "TextComponent{text=': Language ', siblings=[], style=Style{ color=null, bold=null, " +
+                        "italic=null, underlined=null, strikethrough=null, obfuscated=null, clickEvent=null, " +
+                        "hoverEvent=null, insertion=null, font=minecraft:default}}, TextComponent{text='1', " +
+                        "siblings=[], style=Style{ color=null, bold=null, italic=true, underlined=null, " +
+                        "strikethrough=null, obfuscated=null, clickEvent=null, hoverEvent=null, insertion=null, " +
+                        "font=minecraft:default}}, TextComponent{text=' is not loaded.', siblings=[], style=Style{ " +
+                        "color=null, bold=null, italic=null, underlined=null, strikethrough=null, obfuscated=null, " +
+                        "clickEvent=null, hoverEvent=null, insertion=null, font=minecraft:default}}], style=Style{ " +
+                        "color=null, bold=null, italic=null, underlined=null, strikethrough=null, obfuscated=null, " +
+                        "clickEvent=null, hoverEvent=null, insertion=null, font=minecraft:default}}");
+
+        System.out.println(YaumText.translatable("command.yaum.yaum.set", YaumFormatter.escape("defaultLanguage"), YaumFormatter.escape("en_us")).asText().toString());
     }
 
 }

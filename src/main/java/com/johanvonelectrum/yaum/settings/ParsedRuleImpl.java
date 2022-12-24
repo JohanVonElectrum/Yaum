@@ -2,6 +2,7 @@ package com.johanvonelectrum.yaum.settings;
 
 import com.johanvonelectrum.yaum.YaumSettings;
 import com.johanvonelectrum.yaum.lang.Language;
+import com.johanvonelectrum.yaum.text.format.YaumFormatter;
 import net.minecraft.server.command.ServerCommandSource;
 import org.apache.commons.lang3.ClassUtils;
 
@@ -181,7 +182,7 @@ public class ParsedRuleImpl<T> implements ParsedRule<T> {
     }
 
     public boolean validate(ServerCommandSource source, T value, boolean throwExceptions) throws InvalidRuleValueException {
-        if (this.strict && this.options != null && Arrays.stream(this.options).noneMatch(opt -> opt.equals(value.toString()))) {
+        if (this.strict && this.options != null && this.options.length > 0 && Arrays.stream(this.options).noneMatch(opt -> opt.equals(value.toString()))) {
             if (throwExceptions)
                 throw new InvalidRuleValueException(Language.tryTranslate(YaumSettings.defaultLanguage, "error.yaum.invalid-rule-value.options", Arrays.toString(this.options)));
             return false;
@@ -191,9 +192,8 @@ public class ParsedRuleImpl<T> implements ParsedRule<T> {
 
         for (Validator<T> validator : this.validators) {
             if (!validator.validate(source, this, value, "")) { //TODO: user input = full command
-                validator.notifyFailure(source, this, value.toString());
-                if (throwExceptions)
-                    throw new InvalidRuleValueException(Language.tryTranslate(YaumSettings.defaultLanguage, "error.yaum.invalid-rule-value.validator", value.toString(), validator.name(), validator.description()));
+                if (throwExceptions) throw new InvalidRuleValueException(Language.tryTranslate(YaumSettings.defaultLanguage, "error.yaum.invalid-rule-value.validator", YaumFormatter.escape(value.toString()), YaumFormatter.escape(validator.name()), Language.tryTranslate(YaumSettings.defaultLanguage, validator.description(), YaumFormatter.escape(value.toString()))));
+                else validator.notifyFailure(source, this, YaumFormatter.escape(value.toString()));
                 return false;
             }
         }

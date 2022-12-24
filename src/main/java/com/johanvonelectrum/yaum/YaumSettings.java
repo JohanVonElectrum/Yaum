@@ -1,6 +1,10 @@
 package com.johanvonelectrum.yaum;
 
+import com.johanvonelectrum.yaum.lang.Language;
+import com.johanvonelectrum.yaum.settings.ParsedRule;
 import com.johanvonelectrum.yaum.settings.Rule;
+import com.johanvonelectrum.yaum.settings.Validator;
+import net.minecraft.server.command.ServerCommandSource;
 
 public class YaumSettings {
     private static final String CORE = "Core";
@@ -18,9 +22,26 @@ public class YaumSettings {
     public static boolean requireClient = true;
 
 
+    private static final class LanguageValidator extends Validator<String> {
+
+        @Override
+        public String name() {
+            return "language";
+        }
+
+        @Override
+        public boolean validate(ServerCommandSource source, ParsedRule<String> changingRule, String newValue, String userInput) {
+            return Language.hasLanguage(newValue);
+        }
+
+    }
     @Rule(
             categories = { CORE },
-            side = Rule.RuleSide.SERVER //TODO: check that lang exists with a validator
+            side = Rule.RuleSide.SERVER,
+            options = {"en_us", "es_es"},
+            validators = {
+                    LanguageValidator.class
+            }
     )
     public static String defaultLanguage = "en_us";
 }

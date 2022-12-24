@@ -6,6 +6,7 @@ import com.johanvonelectrum.yaum.settings.InvalidRuleValueException;
 import com.johanvonelectrum.yaum.settings.ParsedRule;
 import com.johanvonelectrum.yaum.settings.SettingsManager;
 import com.johanvonelectrum.yaum.text.YaumText;
+import com.johanvonelectrum.yaum.text.format.YaumFormatter;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -47,7 +48,9 @@ public class YaumCommand {
         ParsedRule<?> rule = getRule(context, "ruleName");
         context.getSource().sendFeedback(YaumText.literal("**" + rule.name() + "**").asText(), false);
         context.getSource().sendFeedback(YaumText.translatable(rule.description()).asText(), false);
-        context.getSource().sendFeedback(YaumText.translatable("command.yaum.yaum.peek.options",
+        context.getSource().sendFeedback(YaumText.translatable("command.yaum.yaum.peek.default", YaumFormatter.escape(rule.defaultValue().toString())).asText(), false);
+        context.getSource().sendFeedback(YaumText.translatable("command.yaum.yaum.peek.value", YaumFormatter.escape(rule.value().toString())).asText(), false);
+        if (rule.options().length > 0) context.getSource().sendFeedback(YaumText.translatable("command.yaum.yaum.peek.options",
                 Arrays.stream(rule.options()).map(opt -> String.format(
                         "[\\[%s\\]](/yaum rule %s %s)", opt, rule.name(), opt
                 )).collect(Collectors.joining(", "))
@@ -61,7 +64,7 @@ public class YaumCommand {
         ServerCommandSource source = context.getSource();
         try {
             rule.castAndSet(source, value, false);
-            source.sendFeedback(YaumText.translatable("command.yaum.yaum.set", rule.name(), rule.value().toString()).asText(), true); //TODO: send per op user with translations
+            source.sendFeedback(YaumText.translatable("command.yaum.yaum.set", YaumFormatter.escape(rule.name()), YaumFormatter.escape(rule.value().toString())).asText(), true); //TODO: send per op user with translations
         } catch (InvalidRuleValueException e) {
             e.notifySource(rule.name(), source);
         }

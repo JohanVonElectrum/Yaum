@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
  * @see Token
  * @see Format
  *
- * @version 1.0.0
+ * @version 1.0.1
  * @author JohanVonElectrum
  */
 public class YaumFormatter {
@@ -43,6 +43,22 @@ public class YaumFormatter {
      */
     public YaumFormatter(String content) {
         this.content = content;
+    }
+
+    /**
+     * Escape the string passed as parameter.
+     *
+     * @param string String to be escaped.
+     *
+     * @return Escaped string based on input.
+     * @since 1.0.1
+     */
+    public static String escape(String string) {
+        return string
+                .replaceAll("\\*", "\\\\*")
+                .replaceAll("_", "\\\\_")
+                .replaceAll("-", "\\\\-")
+                .replaceAll("~", "\\\\~");
     }
 
     public Text parse() { //TODO: Return YaumText when YaumText extends Text
@@ -68,7 +84,7 @@ public class YaumFormatter {
             if (token.getStyle().isEmpty()) continue;
 
             tokens.remove(i);
-            List<Token> inner = new YaumFormatter(token.getContent()).tokenize();
+            List<Token> inner = new YaumFormatter(token.getRawContent()).tokenize();
             tokens.addAll(i, inner.stream().map(token::merge).toList());
             i += inner.size() - 1;
         }

@@ -16,7 +16,7 @@ public @interface Rule {
 
     String[] options() default {};
 
-    boolean strict() default true;
+    boolean strict() default false;
 
     Class<? extends Validator>[] validators() default {};
 

@@ -1,5 +1,6 @@
 package com.johanvonelectrum.yaum.text;
 
+import com.johanvonelectrum.yaum.YaumSettings;
 import com.johanvonelectrum.yaum.lang.Language;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
@@ -25,7 +26,7 @@ public class YaumTranslatableText implements YaumText {
 
     @Override
     public Text asText() {
-        return asText("en_us");
+        return asText(YaumSettings.defaultLanguage);
     }
 
     public Text asText(String lang) {

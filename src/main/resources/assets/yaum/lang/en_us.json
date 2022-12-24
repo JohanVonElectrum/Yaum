@@ -1,11 +1,15 @@
 {
-    "arguments.yaum.rule.notFound": "There is no rule with this name: %s",
+    "arguments.yaum.rule.notFound": "There is no rule with this name: _%s_",
     "command.yaum.yaum.peek.options": "Options: %s",
+    "command.yaum.yaum.peek.default": "Default value: %s",
+    "command.yaum.yaum.peek.value": "Current value: %s",
     "command.yaum.yaum.set": "Rule **%s** set to: _%s_",
-    "error.yaum.invalid-rule-value": "Couldn't set value for rule %s: %s",
+    "error.yaum.invalid-rule-value": "Couldn't set value for rule **%s**: %s",
     "error.yaum.invalid-rule-value.options": "Only the following values are possible: %s",
-    "error.yaum.invalid-rule-value.validator": "The value _%s_ is not accepted by de validator **%s**: %s",
+    "error.yaum.invalid-rule-value.validator": "The value _%s_ is not accepted by the validator **%s**: %s",
     "error.yaum.invalid-packet": "You have sent an invalid Yaum packet.",
     "rule.yaum.protocol.description": "Enables the use of the Yaum protocol to improve the user experience with Yaum on the client.",
-    "rule.yaum.requireClient.description": "Require Yaum installed on the client to be able to connect."
+    "rule.yaum.requireClient.description": "Require Yaum installed on the client to be able to connect.",
+    "rule.yaum.defaultLanguage.description": "Default language to translate to.",
+    "validator.yaum.language.description": "Language _%s_ is not loaded."
 }

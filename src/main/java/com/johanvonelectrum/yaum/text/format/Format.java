@@ -24,7 +24,7 @@ public record Format(Pattern pattern, Formatter formatter, int priority, boolean
     }
 
     public static Format of(String start, String end, Formatter formatter, int priority) {
-        return of(start, end, ".+", formatter, priority);
+        return of(start, end, ".*", formatter, priority);
     }
 
     public static Format of(String start, Function<String, Token> formatter, int priority) {

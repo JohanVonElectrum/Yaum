@@ -47,6 +47,10 @@ public class Language {
         }
     }
 
+    public static boolean hasLanguage(String lang) {
+        return languages.containsKey(lang);
+    }
+
     public boolean hasTranslation(String key) {
         return translations.containsKey(key);
     }

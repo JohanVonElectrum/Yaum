@@ -26,7 +26,7 @@ public class Token {
     private Token(String content, String style, Style inherit) {
         this.content = content
                 .replaceAll("\\\\\\*", "*")
-                .replaceAll("\\\\_", "*")
+                .replaceAll("\\\\_", "_")
                 .replaceAll("\\\\\\[", "[")
                 .replaceAll("\\\\]", "]");
         this.rawContent = content;

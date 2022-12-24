@@ -24,7 +24,7 @@ public class Yaum implements ModInitializer {
     }
 
     private static void loadLanguages() {
-        Language.load("en_us");
+        Language.load(YaumSettings.defaultLanguage);
     }
 
     private static void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher, boolean dedicated) {
