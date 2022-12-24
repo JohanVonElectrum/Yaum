@@ -63,8 +63,8 @@ public class LoginProtocolManager {
     }
 
     private void onHelloRes(String lang, String[] mods, PacketSender responseSender) {
-        System.out.println(lang);
-        System.out.println(Arrays.toString(mods));
+        System.out.println(lang); //TODO: store to future (per user) translations
+        System.out.println(Arrays.toString(mods)); // User mods: should be passed to isEligibleToTrusted(...) TODO: think a better name
         this.fence.complete(null); //TODO: add conditions to trust
     }
 
