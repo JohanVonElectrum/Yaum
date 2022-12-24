@@ -1,16 +1,19 @@
 package com.johanvonelectrum.yaum.text;
 
+import com.johanvonelectrum.yaum.text.format.YaumFormatter;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 
 public class YaumLiteralText implements YaumText {
-    private final String text;
+    private final String content;
 
-    public YaumLiteralText(String text) {
-        this.text = text;
+    public YaumLiteralText(String content) {
+        this.content = content;
     }
 
     @Override
     public Text asText() {
-        return Text.of(this.text);
+        return new YaumFormatter(this.content).parse();
     }
 }
