@@ -1,14 +1,19 @@
 package com.johanvonelectrum.yaum.settings;
 
+import com.johanvonelectrum.yaum.YaumSettings;
+import com.johanvonelectrum.yaum.lang.Language;
 import net.minecraft.server.command.ServerCommandSource;
+import org.apache.commons.lang3.ClassUtils;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class ParsedRuleImpl<T> implements ParsedRule<T> {
+
     private final Field field;
     private final String name;
     private final String[] categories;
@@ -16,6 +21,8 @@ public class ParsedRuleImpl<T> implements ParsedRule<T> {
     private final boolean strict;
     private final List<Validator<T>> validators;
     private final Rule.RuleSide ruleSide;
+    private final FromStringConverter<T> converter;
+    private final Class<T> type;
     private T value;
     private T defaultValue;
 
@@ -24,12 +31,45 @@ public class ParsedRuleImpl<T> implements ParsedRule<T> {
         this.field = field;
         this.name = name;
         this.categories = categories;
-        this.options = options;
-        this.strict = strict;
         this.validators = Arrays.stream(validators).map(this::instantiateValidator).collect(Collectors.toList());
         this.ruleSide = ruleSide;
         this.value = value();
         this.defaultValue = value();
+
+        @SuppressWarnings("unchecked")
+        Class<T> type = (Class<T>) ClassUtils.primitiveToWrapper(field.getType());
+        this.type = type;
+
+        FromStringConverter<T> converter = null;
+        if (this.type.equals(Boolean.class)) {
+            this.options = new String[] {"true", "false"};
+            this.strict = true;
+        } else if (this.type.isEnum()) {
+            this.options = (String[]) Arrays.stream(this.type.getEnumConstants()).map(e -> ((Enum<?>) e).name().toLowerCase(Locale.ROOT)).toArray();
+            this.strict = true;
+
+            converter = str -> {
+                try {
+                    @SuppressWarnings({"unchecked", "rawtypes"})
+                    T ret = (T)Enum.valueOf((Class<? extends Enum>) type, str.toUpperCase(Locale.ROOT));
+                    return ret;
+                } catch (IllegalArgumentException e) {
+                    throw new InvalidRuleValueException("Valid values for this rule are: " + Arrays.toString(this.options));
+                }
+            };
+        } else {
+            this.options = options;
+            this.strict = strict;
+        }
+
+        if (converter == null) {
+            @SuppressWarnings("unchecked")
+            FromStringConverter<T> converterFromMap = (FromStringConverter<T>)FromStringConverter.CONVERTER_MAP.get(type);
+            if (converterFromMap == null) throw new UnsupportedOperationException("Unsupported type for ParsedRule" + type);
+            converter = converterFromMap;
+        }
+
+        this.converter = converter;
     }
 
     public ParsedRuleImpl(Field field, Rule rule) {
@@ -110,8 +150,13 @@ public class ParsedRuleImpl<T> implements ParsedRule<T> {
     }
 
     @Override
-    public void set(ServerCommandSource source, T value, boolean setDefault) {
-        if (!validate(source, value)) return;
+    public void castAndSet(ServerCommandSource source, String value, boolean setDefault) throws InvalidRuleValueException {
+        this.set(source, this.converter.convert(value), setDefault);
+    }
+
+    @Override
+    public void set(ServerCommandSource source, T value, boolean setDefault) throws InvalidRuleValueException {
+        if (!validate(source, value, true)) return;
 
         try {
             this.field.set(null, value);
@@ -128,14 +173,27 @@ public class ParsedRuleImpl<T> implements ParsedRule<T> {
 
     @Override
     public boolean validate(ServerCommandSource source, T value) {
-        if (this.options != null && Arrays.stream(this.options).noneMatch(opt -> opt.equals(value.toString())))
+        try {
+            return validate(source, value, false);
+        } catch (InvalidRuleValueException e) {
             return false;
+        }
+    }
+
+    public boolean validate(ServerCommandSource source, T value, boolean throwExceptions) throws InvalidRuleValueException {
+        if (this.strict && this.options != null && Arrays.stream(this.options).noneMatch(opt -> opt.equals(value.toString()))) {
+            if (throwExceptions)
+                throw new InvalidRuleValueException(Language.tryTranslate(YaumSettings.defaultLanguage, "error.yaum.invalid-rule-value.options", Arrays.toString(this.options)));
+            return false;
+        }
 
         if (this.validators == null) return true;
 
         for (Validator<T> validator : this.validators) {
             if (!validator.validate(source, this, value, "")) { //TODO: user input = full command
                 validator.notifyFailure(source, this, value.toString());
+                if (throwExceptions)
+                    throw new InvalidRuleValueException(Language.tryTranslate(YaumSettings.defaultLanguage, "error.yaum.invalid-rule-value.validator", value.toString(), validator.name(), validator.description()));
                 return false;
             }
         }
