@@ -51,33 +51,33 @@ public class Language {
         return translations.containsKey(key);
     }
 
+    public String translate(String key, Object... args) {
+        return String.format(translations.get(key), args);
+    }
+
     public static boolean hasTranslation(String lang, String key) {
         return languages.containsKey(lang) && languages.get(lang).hasTranslation(key);
     }
 
-    public String translate(String key) {
-        return translations.get(key);
+    public static String translate(String lang, String key, Object... args) {
+        return languages.get(lang).translate(key, args);
     }
 
-    public static String translate(String lang, String key) {
-        return languages.get(lang).translate(key);
-    }
-
-    public static Optional<String> safeTranslate(String lang, String key) {
+    public static Optional<String> safeTranslate(String lang, String key, Object... args) {
         if (!hasTranslation(lang, key)) {
             LOGGER.error("Couldn't find any valid translation for {} in {}", key, lang);
             return Optional.empty();
         }
 
-        return Optional.of(translate(lang, key));
+        return Optional.of(translate(lang, key, args));
     }
 
-    public static String tryTranslate(String lang, String key) {
+    public static String tryTranslate(String lang, String key, Object... args) {
         if (!hasTranslation(lang, key)) {
             return key;
         }
 
-        return translate(lang, key);
+        return translate(lang, key, args);
     }
 
 }
