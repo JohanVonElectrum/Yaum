@@ -1,9 +1,14 @@
 # TODO
 ## Core
+- Rule: Universal server rules.
+  - ex. `requireClient`
 - UserRule: per user value
   - Not all rules are UserRules.
+  - ex. `preferedLang`
 - ClientRule: client side rules
   - ex. `useProtocol["always", "required", "never"]`
+- ClientServerRule: client side rules per server
+  - ex. `useProtocolOverride["always", "required", "never"]`
 - Per user translations
   - Server-side when Yaum protocol is not enabled between user and server (using `lang` user rule).
   - Client-side when the translation must exist on the client-side.
@@ -19,3 +24,10 @@
 - Bed fallback.
 - Disable baby with spawn egg.
 - 5 mins despawn xp orb.
+
+## Commands
+- Lang manager:
+  - List installed langs.
+  - List loaded langs.
+  - Load langs.
+  - Unload langs.
