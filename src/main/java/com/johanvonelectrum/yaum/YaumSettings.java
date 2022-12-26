@@ -13,13 +13,13 @@ public class YaumSettings {
             categories = { CORE },
             side = Rule.RuleSide.SERVER
     )
-    public static boolean protocol = true;
+    public static boolean protocol = false;
 
     @Rule(
             categories = { CORE },
             side = Rule.RuleSide.SERVER
     )
-    public static boolean requireClient = true;
+    public static boolean requireClient = false;
 
 
     private static final class LanguageValidator extends Validator<String> {
