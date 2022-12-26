@@ -42,7 +42,7 @@ public class YaumSettings {
     @Rule(
             categories = { CORE },
             side = Rule.RuleSide.SERVER,
-            options = {"en_us", "es_es"},
+            options = {"en_us", "es_es", "gl_es"},
             validators = {
                     LanguageValidator.class
             }
