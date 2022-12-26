@@ -26,6 +26,7 @@ public class ParsedRuleImpl<T> implements ParsedRule<T> {
     private final Class<T> type;
     private T value;
     private T defaultValue;
+    private final T originalValue;
 
     @SuppressWarnings({"rawtypes"})
     public ParsedRuleImpl(Field field, String name, String[] categories, String[] options, boolean strict, Class<? extends Validator>[] validators, Rule.RuleSide ruleSide) {
@@ -36,6 +37,7 @@ public class ParsedRuleImpl<T> implements ParsedRule<T> {
         this.ruleSide = ruleSide;
         this.value = value();
         this.defaultValue = value();
+        this.originalValue = defaultValue;
 
         @SuppressWarnings("unchecked")
         Class<T> type = (Class<T>) ClassUtils.primitiveToWrapper(field.getType());
@@ -148,6 +150,20 @@ public class ParsedRuleImpl<T> implements ParsedRule<T> {
     @Override
     public T defaultValue() {
         return this.defaultValue;
+    }
+
+    @Override
+    public T originalValue() {
+        return this.originalValue;
+    }
+
+    @Override
+    public void reset(ServerCommandSource source, boolean factory) {
+        try {
+            set(source, this.originalValue, factory);
+        } catch (InvalidRuleValueException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

@@ -2,12 +2,7 @@ package com.johanvonelectrum.yaum.text;
 
 import com.johanvonelectrum.yaum.YaumSettings;
 import com.johanvonelectrum.yaum.lang.Language;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Style;
 import net.minecraft.text.Text;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
-
-import java.util.Optional;
 
 public class YaumTranslatableText implements YaumText {
 

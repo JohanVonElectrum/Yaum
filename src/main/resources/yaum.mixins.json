@@ -4,6 +4,7 @@
     "package": "com.johanvonelectrum.yaum.mixin",
     "compatibilityLevel": "JAVA_16",
     "mixins": [
+        "core.YaumLoader"
     ],
     "server": [
         "protocol.LoginProtocolGate"

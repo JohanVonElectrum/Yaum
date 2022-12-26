@@ -1,8 +1,6 @@
 package com.johanvonelectrum.yaum.text;
 
 import com.johanvonelectrum.yaum.text.format.YaumFormatter;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 
 public class YaumLiteralText implements YaumText {

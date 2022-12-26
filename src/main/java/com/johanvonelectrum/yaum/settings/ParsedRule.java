@@ -19,6 +19,10 @@ public interface ParsedRule<T> {
 
     T defaultValue();
 
+    T originalValue();
+
+    void reset(ServerCommandSource source, boolean factory);
+
     void castAndSet(ServerCommandSource source, String value, boolean setDefault) throws InvalidRuleValueException;
 
     void set(ServerCommandSource source, T value, boolean setDefault) throws InvalidRuleValueException;
