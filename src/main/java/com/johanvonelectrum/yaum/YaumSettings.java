@@ -48,4 +48,16 @@ public class YaumSettings {
             }
     )
     public static String defaultLanguage = "en_us";
+
+    @Rule(
+            categories = { CORE },
+            side = Rule.RuleSide.SERVER // FIXME revisar side
+    )
+    public static boolean commandBatch = true;
+
+    @Rule(
+            categories = { CORE },
+            side = Rule.RuleSide.SERVER // FIXME revisar side
+    )
+    public static boolean commandComputation = true;
 }

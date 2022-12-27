@@ -11,5 +11,8 @@
     "rule.yaum.protocol.description": "Activa el uso del protocolo Yaum para mejorar la experiencia del usuario con Yaum en el cliente.",
     "rule.yaum.requireClient.description": "Requiere Yaum instalado en el cliente para poder conectarse.",
     "rule.yaum.defaultLanguage.description": "Lenguaje predeterminado al que traducir.",
+    "rule.yaum.commandBatch.description": "Activa el comando /batch.",
+    "rule.yaum.commandComputation.description": "Activa el comando /computation.",
+    "rule.yaum.commandComputation.base": "Base %s: %s.",
     "validator.yaum.language.description": "El lenguaje _%s_ no está instalado."
 }
