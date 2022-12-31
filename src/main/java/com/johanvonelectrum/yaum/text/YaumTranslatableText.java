@@ -25,6 +25,6 @@ public class YaumTranslatableText implements YaumText {
     }
 
     public Text asText(String lang) {
-        return YaumText.literal(Language.tryTranslate(lang, this.key, this.args)).asText();
+        return YaumText.literal(Language.tryTranslate(lang, this.key), args).asText();
     }
 }
