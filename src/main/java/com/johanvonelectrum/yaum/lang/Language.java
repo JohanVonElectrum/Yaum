@@ -63,16 +63,16 @@ public class Language {
         return translations.containsKey(key);
     }
 
-    public String translate(String key, Object... args) {
-        return String.format(translations.get(key), args);
+    public String translate(String key) {
+        return translations.get(key);
     }
 
     public static boolean hasTranslation(String lang, String key) {
         return languages.containsKey(lang) && languages.get(lang).hasTranslation(key);
     }
 
-    public static String translate(String lang, String key, Object... args) {
-        return languages.get(lang).translate(key, args);
+    public static String translate(String lang, String key) {
+        return languages.get(lang).translate(key);
     }
 
     public static Optional<String> safeTranslate(String lang, String key, Object... args) {
@@ -81,17 +81,17 @@ public class Language {
             return Optional.empty();
         }
 
-        return Optional.of(translate(lang, key, args));
+        return Optional.of(translate(lang, key));
     }
 
     public static String tryTranslate(String lang, String key, Object... args) {
         if (!hasTranslation(lang, key)) {
             if (lang.equals(YaumSettings.defaultLanguage) || !hasTranslation(YaumSettings.defaultLanguage, key)) return key;
 
-            return translate(YaumSettings.defaultLanguage, key, args);
+            return translate(YaumSettings.defaultLanguage, key);
         }
 
-        return translate(lang, key, args);
+        return translate(lang, key);
     }
 
 }

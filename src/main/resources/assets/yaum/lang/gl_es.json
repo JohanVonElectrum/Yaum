@@ -14,5 +14,5 @@
     "rule.yaum.commandBatch.description": "Activa o comando /batch.",
     "rule.yaum.commandComputation.description": "Activa o comando /computation.",
     "rule.yaum.commandComputation.base": "Base %s: %s.",
-    "validator.yaum.language.description": "A lingua _%s_ non está instalada."
+    "validator.yaum.language.description": "A lingua _%s_ non está instalada.",
 }

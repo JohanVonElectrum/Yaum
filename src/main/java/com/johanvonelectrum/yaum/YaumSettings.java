@@ -8,6 +8,8 @@ import net.minecraft.server.command.ServerCommandSource;
 
 public class YaumSettings {
     private static final String CORE = "Core";
+    private static final String COMMAND = "Command";
+    private static final String SCOREBOARD = "Scoreboard";
 
     @Rule(
             categories = { CORE },
@@ -49,15 +51,46 @@ public class YaumSettings {
     )
     public static String defaultLanguage = "en_us";
 
+    // TODO check side attribute for all commands
     @Rule(
-            categories = { CORE },
-            side = Rule.RuleSide.SERVER // FIXME revisar side
+            categories = { COMMAND },
+            side = Rule.RuleSide.SERVER
     )
     public static boolean commandBatch = true;
 
     @Rule(
-            categories = { CORE },
-            side = Rule.RuleSide.SERVER // FIXME revisar side
+            categories = { COMMAND },
+            side = Rule.RuleSide.SERVER
     )
     public static boolean commandComputation = true;
+
+    @Rule(
+            categories = { COMMAND },
+            side = Rule.RuleSide.SERVER
+    )
+    public static boolean commandEnderchest = true;
+
+    @Rule(
+            categories = { COMMAND },
+            side = Rule.RuleSide.SERVER
+    )
+    public static boolean commandLocation = true;
+
+    @Rule(
+            categories = { COMMAND },
+            side = Rule.RuleSide.SERVER
+    )
+    public static boolean commandSignal = true;
+
+    @Rule(
+            categories = { COMMAND },
+            side = Rule.RuleSide.SERVER
+    )
+    public static boolean commandTotal = true;
+
+    @Rule(
+            categories = { SCOREBOARD },
+            side = Rule.RuleSide.SERVER
+    )
+    public static boolean filterBotsInScores = true;
 }

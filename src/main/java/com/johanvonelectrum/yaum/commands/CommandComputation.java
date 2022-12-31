@@ -2,15 +2,15 @@ package com.johanvonelectrum.yaum.commands;
 
 import com.google.common.collect.Sets;
 import com.johanvonelectrum.yaum.YaumSettings;
-import com.johanvonelectrum.yaum.text.YaumTranslatableText;
+import com.johanvonelectrum.yaum.text.YaumText;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.command.CommandSource;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.LiteralText;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
 
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
@@ -39,8 +39,8 @@ public class CommandComputation {
     }
 
     private static int convert(ServerCommandSource source, int input, int base1, int base2) {
-        source.sendFeedback(new YaumTranslatableText("rule.yaum.commandComputation.base", base1, input).asText(), false);
-        source.sendFeedback(new YaumTranslatableText("rule.yaum.commandComputation.base", base2, Integer.toString(Integer.parseInt(input + "", base1), base2)).asText(), false);
+        source.sendFeedback(YaumText.translatable("rule.yaum.commandComputation.base", base1, input).asText(), false);
+        source.sendFeedback(YaumText.translatable("rule.yaum.commandComputation.base", base2, Integer.toString(Integer.parseInt(input + "", base1), base2)).asText(), false);
 
         return 1;
     }

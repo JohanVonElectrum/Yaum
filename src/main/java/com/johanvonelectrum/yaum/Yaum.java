@@ -1,8 +1,6 @@
 package com.johanvonelectrum.yaum;
 
-import com.johanvonelectrum.yaum.commands.CommandBatch;
-import com.johanvonelectrum.yaum.commands.CommandComputation;
-import com.johanvonelectrum.yaum.commands.YaumCommand;
+import com.johanvonelectrum.yaum.commands.*;
 import com.johanvonelectrum.yaum.lang.Language;
 import com.johanvonelectrum.yaum.settings.SettingsManager;
 import com.mojang.brigadier.CommandDispatcher;
@@ -34,6 +32,10 @@ public class Yaum implements ModInitializer {
         YaumCommand.register(dispatcher, dedicated);
         CommandBatch.register(dispatcher);
         CommandComputation.register(dispatcher);
+        CommandEnderchest.register(dispatcher);
+        CommandLocation.register(dispatcher);
+        CommandSignal.register(dispatcher);
+        CommandTotal.register(dispatcher);
     }
 
     public static void onServerLoaded(MinecraftServer minecraftServer) {

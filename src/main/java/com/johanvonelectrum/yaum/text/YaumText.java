@@ -8,6 +8,10 @@ public interface YaumText {
         return new YaumLiteralText(text);
     }
 
+    static YaumLiteralText literal(String text, Object... args) {
+        return new YaumLiteralText(text, args);
+    }
+
     static YaumTranslatableText translatable(String key, Object... args) {
         return new YaumTranslatableText(key, args);
     }
